@@ -58,6 +58,8 @@ async function run() {
       res.send(services);
     });
 
+    // get method
+
     app.get("/allServices", async (req, res) => {
       try {
         const query = {};
