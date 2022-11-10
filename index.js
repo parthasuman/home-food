@@ -76,7 +76,7 @@ async function run() {
       res.send(service);
     });
 
-    // reviews api
+    // reviews api for all
     app.get("/reviews", verifyJWT, async (req, res) => {
       const decoded = req.decoded;
       console.log("inside review api", decoded);
