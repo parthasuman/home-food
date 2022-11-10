@@ -1,7 +1,12 @@
 const express = require("express");
 const cors = require("cors");
 const jwt = require("jsonwebtoken");
-const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
+const {
+  MongoClient,
+  ServerApiVersion,
+  ListCollectionsCursor,
+  ObjectId,
+} = require("mongodb");
 require("dotenv").config();
 
 const app = express();
@@ -54,10 +59,14 @@ async function run() {
     });
 
     app.get("/allServices", async (req, res) => {
-      const query = {};
-      const cursor = serviceCollection.find(query);
-      const services = await cursor.toArray();
-      res.send(services);
+      try {
+        const query = {};
+        const cursor = serviceCollection.find(query);
+        const services = await cursor.toArray();
+        res.send(services);
+      } catch (e) {
+        res.send({ status: 0, message: e.message });
+      }
     });
 
     app.get("/allservices/:id", async (req, res) => {
