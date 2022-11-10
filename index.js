@@ -58,7 +58,7 @@ async function run() {
       res.send(services);
     });
 
-    // get method
+    // get method done
 
     app.get("/allServices", async (req, res) => {
       try {
